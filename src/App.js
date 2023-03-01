@@ -1,20 +1,22 @@
 import {Route, Switch} from 'react-router-dom'
 
-import Login from './Components/Login'
-import Home from './Components/Home'
-import Jobs from './Components/Jobs'
+import Login from './components/Login'
+import Home from './components/Home'
+import Jobs from './components/Jobs'
+import JobDetails from './components/JobDetails'
+import NotFound from './components/NotFound'
+import ProtectedRoute from './components/ProtectedRoute'
+
 import './App.css'
-import NotFound from './Components/NotFound'
 
 const App = () => (
-  <div>
-    <Switch>
-      <Route exact path="/Login" component={Login} />
-      <Route exact path="/" component={Home} />
-      <Route exact path="/jobs" component={Jobs} />
-      <Route component={NotFound} />
-    </Switch>
-  </div>
+  <Switch>
+    <Route exact path="/login" component={Login} />
+    <ProtectedRoute exact path="/" component={Home} />
+    <ProtectedRoute exact path="/jobs" component={Jobs} />
+    <ProtectedRoute exact path="/jobs/:id" component={JobDetails} />
+    <Route component={NotFound} />
+  </Switch>
 )
 
 export default App
